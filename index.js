@@ -6,6 +6,7 @@
 
 const todoList = document.querySelector('.todo-list')
 const completedList = document.querySelector('.completed-list')
+const addToDoForm = document.querySelector('.add-item')
 
 const state = {
     todos: [
@@ -37,17 +38,29 @@ function getNotCompletedTodo(){
 function addTodo(todo){
     state.todos.push(todo)
 }
+
 function deleteTodo(text){
-    state.todos = state.todos.filter(function (todo){
+    return state.todos = state.todos.filter(function (todo){
         return todo.text !== text
     })
 }
+
 function toggleTodo(todo){
     todo.completed = !todo.completed 
 }
 
-
-
+function addItemForm(){
+    addToDoForm.addEventListener('submit', function(event){
+    event.preventDefault()
+        const todo = {
+            text : addToDoForm.text.value,
+            completed : false
+        }
+        addTodo(todo)
+        incompletedTodos()
+        addToDoForm.reset()
+    })
+}
 function incompletedTodos(){
     const notCompletedTodo = getNotCompletedTodo()
     todoList.innerHTML = ''
@@ -155,3 +168,4 @@ function completedTodos(){
 }
 completedTodos()
 incompletedTodos()
+addItemForm()
