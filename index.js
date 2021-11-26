@@ -111,6 +111,10 @@ function incompletedTodos(){
             completedTodos()
             incompletedTodos()
         })
+        deleteBtn.addEventListener('click',function(){
+            deleteTodo(todoElement.text)
+            incompletedTodos()
+        })
     }
 }
 
@@ -163,6 +167,10 @@ function completedTodos(){
 
             completedTodos()
             incompletedTodos()
+        })
+        deleteBtn.addEventListener('click',function(){
+            deleteTodo(todoElement.text)
+            completedTodos()
         })
     }
 }
